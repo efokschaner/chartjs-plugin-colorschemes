@@ -60,7 +60,8 @@ var ColorSchemesPlugin = {
 		var scheme = getScheme(options.scheme);
 		var fillAlpha = options.fillAlpha;
 		var reverse = options.reverse;
-		var override = options.override;
+		var override = false; // Hardcoded false instead of options.override,
+		// somehow the options passed in by chartjs is a Proxy object with a function called override which breaks this
 		var custom = options.custom;
 		var schemeClone, customResult, length, colorIndex, color;
 
