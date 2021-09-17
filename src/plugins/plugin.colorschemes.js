@@ -1,11 +1,13 @@
 'use strict';
 
-import * as Chart from 'chart.js';
+import { DatasetController, Chart } from 'chart.js';
 
-var helpers = Chart.helpers;
+import colorschemes from '../colorschemes/index.js';
+
+import * as helpers from 'chart.js/helpers';
 
 // Element models are always reset when hovering in Chart.js 2.7.2 or earlier
-var hoverReset = Chart.DatasetController.prototype.removeHoverStyle.length === 2;
+var hoverReset = DatasetController.prototype.removeHoverStyle.length === 2;
 
 var EXPANDO_KEY = '$colorschemes';
 
@@ -23,12 +25,11 @@ pluginBase.plugins.colorschemes = {
 };
 
 function getScheme(scheme) {
-	var colorschemes, matches, arr, category;
+	var matches, arr, category;
 
 	if (helpers.isArray(scheme)) {
 		return scheme;
 	} else if (typeof scheme === 'string') {
-		colorschemes = Chart.colorschemes || {};
 
 		// For backward compatibility
 		matches = scheme.match(/^(brewer\.\w+)([1-3])-(\d+)$/);
@@ -181,6 +182,6 @@ var ColorSchemesPlugin = {
 	}
 };
 
-(Chart.plugins || Chart).register(ColorSchemesPlugin);
+Chart.register(ColorSchemesPlugin);
 
 export default ColorSchemesPlugin;
