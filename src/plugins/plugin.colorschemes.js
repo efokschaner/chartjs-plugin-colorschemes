@@ -181,6 +181,6 @@ var ColorSchemesPlugin = {
 	}
 };
 
-Chart.plugins.register(ColorSchemesPlugin);
+(Chart.plugins || Chart).register(ColorSchemesPlugin);
 
 export default ColorSchemesPlugin;
